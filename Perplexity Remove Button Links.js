@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Perplexity Remove Button Links (Persistent)
+// @name         Perplexity Remove Button Links
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.2.1
 // @description  Continuously replaces Perplexity's inline button links with plain text for easier copying
 // @author       nSkade
 // @match        https://www.perplexity.ai/*
@@ -12,12 +12,13 @@
     'use strict';
 
     function replaceButtons() {
-        // Select all matching buttons
         const buttons = document.querySelectorAll('button.cursor-pointer.inline.underline');
         buttons.forEach(btn => {
-            // Only replace if button is inside a <strong>
-            if (btn.parentElement && btn.parentElement.tagName === 'STRONG') {
-                // Avoid replacing if already replaced
+            if (( btn.parentElement.tagName === 'STRONG' &&
+                 btn.parentElement.parentElement.className === "my-0" )
+                || ( btn.parentElement.className.includes("mb-xs mt-5 text-base")
+                    )
+            ) {
                 if (btn.getAttribute('data-replaced') === 'true') return;
                 const span = document.createElement('span');
                 span.textContent = btn.textContent;
@@ -27,6 +28,10 @@
         });
     }
 
-    // Run every 500ms to catch dynamic updates and re-renders
-    setInterval(replaceButtons, 500);
+    // Run once on load
+    replaceButtons();
+
+    // Use MutationObserver to watch for DOM changes
+    const observer = new MutationObserver(replaceButtons);
+    observer.observe(document.body, { childList: true, subtree: true });
 })();
