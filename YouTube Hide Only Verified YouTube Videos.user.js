@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Hide Only Verified YouTube Videos (Final)
+// @name         YouTube Hide Only Verified YouTube Videos
 // @namespace    http://tampermonkey.net/
 // @version      1.2
 // @description  Hide only YouTube videos from verified channels in search results

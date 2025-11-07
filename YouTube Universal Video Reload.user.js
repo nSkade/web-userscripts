@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         YouTube Universal Video Reload (Title & Thumbnail v11)
+// @name         YouTube Universal Video Reload
 // @namespace    http://tampermonkey.net/
 // @version      2.3
 // @description  Forces page reload on thumbnail or title click, avoiding extension conflicts.

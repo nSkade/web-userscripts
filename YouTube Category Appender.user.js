@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         YouTube Category Appender (Configurable with Listener Removal)
+// @name         YouTube Category Appender
 // @namespace    http://tampermonkey.net/
 // @version      0.7
 // @description  Append YouTube video category to URL, excluding specified categories and removing listeners when excluded

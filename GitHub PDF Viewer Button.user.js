@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         GitHub PDF Viewer Button (Dynamic)
+// @name         GitHub PDF Viewer Button
 // @namespace    http://tampermonkey.net/
 // @author       nSkade
 // @version      0.7

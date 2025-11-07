@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         delete mail.de mails
+// @name         mail.de delete mail.de mails
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -45,6 +45,33 @@
                     }
                 }
             }
+
+            // --- Auto-close both types of upgrade dialogs ---
+            var dialogs = document.querySelectorAll(".MooDialog.MooDialogNew.MooDialogUpgrade");
+            dialogs.forEach(function(dialog) {
+                // Try the SVG "close" button (top right "X")
+                var closeBtn = dialog.querySelector("svg.close");
+                if (closeBtn) {
+                    closeBtn.dispatchEvent(new MouseEvent('click', {
+                        bubbles: true,
+                        cancelable: true
+                    }));
+                    return;
+                }
+                // Try the "Abbrechen" cancel button
+                var cancelBtn = dialog.querySelector(".buttonLong.cancel");
+                if (cancelBtn) {
+                    cancelBtn.click();
+                    return;
+                }
+                // Try "Jetzt schließen" button
+                var closeNowBtn = dialog.querySelector(".buttonLong.closeNow");
+                if (closeNowBtn) {
+                    closeNowBtn.click();
+                    return;
+                }
+            });
+
         });
     });
     observer.observe(document, { childList: true, subtree: true });
